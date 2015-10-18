@@ -10,11 +10,12 @@
         <b><li>Name: <u><a href="<%= project.link %>"><%= project.name %></a></u></li><br></b>
         <b><li>Description: <%= project.description %></li><br></b>
         <!-- <b><li>Link: <a href="<%= project.link %>"</a></li><br></b> -->
-
+        <% if can? :manage, Category %>
         <%= link_to "Edit", edit_category_project_path(@category, project) %> |
         <%= link_to "Delete", category_project_path(@category, project),
                                  :data => {:confirm => "Are you sure?",
                                                 :method => "delete"} %>
+        <% end %>
 
     <% end %>
   </ul>
