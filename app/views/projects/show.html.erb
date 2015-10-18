@@ -7,9 +7,9 @@
   <ul>
     <b><% @category.projects.each do |project| %></b>
 
-        <b><li>Name: <u><%= project.name %></u></li><br></b>
+        <b><li>Name: <u><a href="<%= project.link %>"><%= project.name %></a></u></li><br></b>
         <b><li>Description: <%= project.description %></li><br></b>
-        <b><li>Link: <a href= <%= project.link %></a></li><br></b>
+        <!-- <b><li>Link: <a href="<%= project.link %>"</a></li><br></b> -->
 
         <%= link_to "Edit", edit_category_project_path(@category, project) %> |
         <%= link_to "Delete", category_project_path(@category, project),

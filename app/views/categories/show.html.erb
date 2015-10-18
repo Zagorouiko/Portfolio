@@ -15,8 +15,9 @@
   <% end %>
 
   <br>
-
+  <% if can? :manage, Category %>
 <%= link_to 'Add a Project', new_category_project_path(@category) %> |
 <%= link_to 'Edit Category', edit_category_path(@category) %> |
 <%= link_to 'Delete Category', category_path(@category), data: { confirm: "Are you sure?", method: "delete"} %>
+<% end %>
 </div>
