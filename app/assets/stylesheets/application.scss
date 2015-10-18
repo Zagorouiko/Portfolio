@@ -32,7 +32,10 @@
  // Whatever application styles you have go last
  // @import "base";
 
-
+p {
+  margin-right: 150px;
+  margin-left: 150px;
+}
 
  .recom {
    border: 1px solid #d9d9d9;

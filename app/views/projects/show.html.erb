@@ -1,4 +1,4 @@
-<div class="well">
+<div class="well" style="border:0px;">
 <h1><%= @category.name %></h1>
 
 <b><% if @category.projects.any? %></b>
@@ -7,8 +7,8 @@
   <ul>
     <b><% @category.projects.each do |project| %></b>
 
-        <b><li>Name: <u><a href="<%= project.link %>"><%= project.name %></a></u></li><br></b>
-        <b><li>Description: <%= project.description %></li><br></b>
+        <b><li><u><a href="<%= project.link %>"><%= project.name %></a></u></li><br></b>
+        <b><li><%= project.description %></li><br></b>
         <!-- <b><li>Link: <a href="<%= project.link %>"</a></li><br></b> -->
         <% if can? :manage, Category %>
         <%= link_to "Edit", edit_category_project_path(@category, project) %> |
