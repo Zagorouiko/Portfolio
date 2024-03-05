@@ -2,19 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background-color: #232528;
-  color: #EAF6FF;
-  margin: 0;
-}
+@layer base {
+  html {
+    font-family: "Rajdhani", sans-serif;
+    cursor: crosshair;
+    overflow: hidden;
+  }
 
-section { 
-  height: 100vh;
-  width: 100%;
-}
+  body {
+    background-color: #232528;
+    color: #EAF6FF;
+    margin: 0;
+  }
+  
+  section { 
+    height: 100vh;
+    width: 100%;
+  }
 
-.rajdhani-light {
-  font-family: "Rajdhani", sans-serif;
-  font-weight: 300;
-  font-style: normal;
+  aside {
+    transform: translateX(-100%);
+  }
+
+  .hide-loader {
+    transform: translateY(-100%);
+  }
 }
