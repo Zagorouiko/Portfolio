@@ -1,0 +1,15 @@
+@font-face {
+    font-family: 'Kuano'; /* Choose a name for your font */
+    src: url('/Kuanodemo-RpzB3.ttf') format('truetype');
+    /* You might need to adjust the path based on your project structure */
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Modenine'; /* Choose a name for your font */
+    src: url('/Modenine-2OPd.ttf') format('truetype');
+    /* You might need to adjust the path based on your project structure */
+    font-weight: normal;
+    font-style: normal;
+  }

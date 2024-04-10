@@ -1,0 +1,16 @@
+Features
+1. Add custom model to gpt chat
+2. Add state animations (hamburger/close, project progress bar)
+3. Show loading screen when the assets are being loaded
+4. Add clouds to about page
+5. Update projects styling
+
+**Responsiveness
+
+Fixes
+1. Project 4 horizontal scroll space
+2. Add overflow to chatbox
+3. Optimize/fix vertical scroll for project images
+4. Fix scrollbar missing on nfts page
+5. Add text above parallax images and set both as absolute grids
+6. Fix shader scroll issue and update plane sizing

@@ -1,0 +1,34 @@
+@import './fonts.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Rajdhani", sans-serif;
+    cursor: crosshair;
+    /* overflow: hidden; */
+    overflow: visible;
+  }
+
+  body {
+    background-color: 
+    /* #232528; */
+    #000000;
+    color: #EAF6FF;
+    margin: 0;
+  }
+  
+  section { 
+    height: 100vh;
+    width: 100%;
+  }
+
+  aside {
+    transform: translateX(-100%);
+  }
+
+  .hide-loader {
+    transform: translateY(-100%);
+  }
+}
