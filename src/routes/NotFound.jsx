@@ -1,9 +1,3 @@
-
-export default function NotFound() {
-
-  return (
-   <div className="h-screen w-full">   
-    <video className='h-full w-full object-cover' type="video/mp4" autoPlay loop muted src="/404Vid.mov" />
-    </div>
-  )
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:a8cad93b3ac25e9d65b605f2402c7874412707946c8ba78b7d02a8fc8f95e23a
+size 224
