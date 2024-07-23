@@ -74,38 +74,19 @@ export function animateWords() {
 
 export async function generateImage() {
   const ipfsClient = await IPFSClient()
+
     try {
-    const options = {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${"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"}`,
-        },
-      };
-  
-    const gptResponse = await axios.post("https://api.openai.com/v1/completions", {
-    "model": "gpt-3.5-turbo-instruct",
-    "prompt": "Create a generative NFT art prompt in the likes of Bored Ape Yacht Club, send me just the text, no code, and no intro",
-    "max_tokens": 100
-    }, options)
-
-
-    const imageResponse = await axios.post( "https://api.openai.com/v1/images/generations", {         
-        "prompt": gptResponse.data.choices[0].text,
-        "n": 1,
-        "size": "256x256"
-    }, options)
-
-    // Need to save the raw file here before sending it to the image prop
-     const rawImage = await axios.get("https://cors-anywhere.herokuapp.com/" + imageResponse.data.data[0].url, 
-      {
-        responseType: 'arraybuffer', 
-        headers: { 'Content-Type': 'image/png', 'Access-Control-Allow-Origin': '*' }
-      }
-      )
-      const uint8Array = new Uint8Array(rawImage.data);
+      // Instead of getting the image this way: client (me) -> OpenAI Server (CORs issue, can only be fixed on the OpenAI server which is not possible for me to do)
+      // I grab it by creating my server proxy -> OpenAI Server (server to server)
+      // Then my client (me) -> My Server (to get the image)
+      const imageResponse = await axios.get('http://zagorouiko.com/openAI-image')
+      const url = imageResponse.data.image
+      const imageUrl = await fetchImage(url)
+      const response = await fetch(imageUrl)  
+      const uint8Array = await response.arrayBuffer()
       
       // Convert Uint8Array to Buffer
-      const buffer = await Buffer.from(uint8Array);
+      const buffer = await Buffer.from(uint8Array)
       const imageURI = await ipfsClient.add(buffer)  
  
         const obj = {
@@ -113,8 +94,11 @@ export async function generateImage() {
         "description": "A piece of art",
         "image": "https://gumwall.infura-ipfs.io/ipfs/" + imageURI.path
     }
-      const result = await ipfsClient.add(JSON.stringify(obj));
-      const metadata = "https://gumwall.infura-ipfs.io/ipfs/" + result.path
+      const result = await axios.get("http://zagorouiko.com/ipfs", {
+        params: { ipfsObj: JSON.stringify(obj) }
+      })
+
+      const metadata = "https://gumwall.infura-ipfs.io/ipfs/" + result.data.client.path
       return metadata
 
     } catch (error) {
@@ -122,43 +106,60 @@ export async function generateImage() {
     }
 }
 
-export async function callSkraprAPI() {
+async function fetchImage(url) {
+  try {
+    const response = await axios.get(`http://zagorouiko.com/get-OpenAI-image?url=${encodeURIComponent(url)}`, {
+      responseType: 'arraybuffer',
+    })
 
-    // hard coded giphy appID
+    const imageBlob = new Blob([response.data], { type: 'image/png' })
+    const imageURL = URL.createObjectURL(imageBlob)
+
+    return imageURL
+  } catch (error) {
+    console.error('Error fetching image:', error);
+    throw error;
+  }
+}
+
+export async function callSkraprAPI() {
     try {
-    const response = await axios.get("https://app-store-reviews-api-aeb965d6e5af.herokuapp.com/reviews/iOS/974748812")
-    console.log(response.data)
-    return response.data
+    const response = await axios.get("https://store-reviews-api-5143033d0625.herokuapp.com/reviews/iOS/6448311069")
+
+    let reviewObject = response.data.message.reduce((acc, item) => {
+      if (item.rating <= 3) {
+        acc.push(
+          item.review
+        )
+      }
+      return acc
+    }, [])
+
+    let reducedReviews = reduceByHalf(reviewObject)
+    let gptResponse = await lightHouseRun(reducedReviews)
+    return gptResponse
 
     } catch (error) {
       console.log(error)
     }
   }
 
-  export async function lightHouseRun(reviews) {
-    const options = {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${"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"}`,
-      }
-    }
-
+  async function lightHouseRun(reviews) {
     try {
-    const response = await axios.post("https://api.openai.com/v1/completions", {
-      "model": "gpt-3.5-turbo-instruct",
-      "prompt":
-      `
-      I'm giving you a list of reviews for an app to look through.
-      The apps operating system is: ${app.OS} and the app name is: ${app.name} The reviews are: ${reviews}
-      Specifically look for the issue with the "crusher" headset not pairing to devices. Give me a list of each device that is affected by this issue, and if you can the amount of devices affected and the buid number.
-      `,
-      "max_tokens": 500
-      }, options)
-
-      console.log(response.data)
-      return response.data.choices[0].text
-
+      const response = await axios.get("http://zagorouiko.com/openAI-scraper", {
+        params: { reviews: reviews }
+      })
+      return response.data.gptResponse
+      
     } catch (error) {
       console.log(error)
     }
+  }
+
+  function reduceByHalf(arr) {
+    let result = [];
+    for (let i = 0; i < arr.length; i += 4) {
+      result.push(arr[i]);
+    }
+    return result;
   }

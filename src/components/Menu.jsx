@@ -1,100 +1,132 @@
-import { useGSAP } from "@gsap/react";
-import { Icon } from '@iconify/react';
-import gsap from "gsap";
-import { Canvas } from '@react-three/fiber';
-import ParticleSystem from "./ParticleSystem";
+import { useState } from "react"
 
 function Menu() {
-  let optionElements
-  let lineElements
+    const [isOpen, setIsOpen] = useState(false)
 
-  useGSAP(() => {
-    optionElements = document.querySelectorAll('.option')
-    lineElements = document.querySelectorAll('.line')
-
-
-    optionElements.forEach((option, index) => {
-      option.addEventListener('mouseenter', () => {
-        gsap.to(option, {opacity: 1, duration: 0.3})
-        gsap.to(option, {scale: 1.1, duration: 0.3})
-        gsap.to(lineElements[index], {scaleX: 1, duration: 0.5, transformOrigin: 'left'})
-      })
-
-      option.addEventListener('mouseleave', () => {
-        gsap.to(option, {opacity: 0.2, duration: 0.3})
-        gsap.to(option, {scale: 1, duration: 0.3})
-        gsap.to(lineElements[index], {scaleX: 0, duration: 0.3})
-      })
-    })
-
-    return () => {
-      optionElements.forEach((option, index) => {
-        option.removeEventListener('mouseleave', () => {});
-      });
-    };
-    
-  })
+    const toggleMenu = () => {
+        setIsOpen(!isOpen)
+      }
 
     return (
-      <>
-      <div className="flex items-center justify-between">
-      <nav>
-        <section className="flex absolute">
-          <div className="absolute h-screen w-full top-0 left-0 z-10 flex flex-col justify-evenly items-center bg-[#111213]">
-            <Icon className="absolute opacity-50 right-[75rem] top-32 -z-10" color="#444" width="1000" height="1000" icon="mdi:x-ray" />
-            <ul className="text-5xl ml-12">
+        <nav className='menu relative'>
 
+        <div id="nav-icon3" className={`ham fixed cursor-pointer top-5 right-5 opacity-50 z-50 ${isOpen ? 'open' : ''}`} onClick={toggleMenu}>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        </div>
+
+        <ul className='main-menu fixed w-full left-0 flex flex-col items-center opacity-0 justify-center h-0 bg-[#111213] z-40  text-5xl '>
+        <li className="menuItem option opacity-20 z-50">
+            <div>
+                <a className="hidden" href="#" aria-label="Links to home section" onClick={toggleMenu}>            
+                HOME
+                </a>
+            </div>          
+            </li>
+        
+        <li className="menuItem option pt-10 opacity-20 z-50">
+            <div>
+            <a className="hidden" href="#about" aria-label="Links to about section" onClick={toggleMenu}>ABOUT</a>
+            </div>
+            </li>
+
+        <li className="menuItem option pt-10 opacity-20 z-50">
+            <div>
+            <a className="hidden" href="#project" aria-label="Links to project section" onClick={toggleMenu}>PROJECTS</a>
+            </div>
+            </li>
+
+        <li className="menuItem option pt-10 opacity-20 z-50">
+            <div>
+                <a className="hidden" href="#NFTPhone" aria-label="Links to NFT phone section" onClick={toggleMenu}>NFT PHONE</a>
+            </div>
+            </li>
+
+        <li className="menuItem option pt-10 opacity-20 z-50">
+            <div>
+                <a className="hidden" href="#contact" aria-label="Links to contact section" onClick={toggleMenu}>CONTACT</a>
+            </div>
+            </li>              
+        </ul>
+        
+        <style>
+        {`
+            #nav-icon3 {
+            width: 40px;
+            height: 45px;
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+            -webkit-transition: .5s ease-in-out;
+            -moz-transition: .5s ease-in-out;
+            -o-transition: .5s ease-in-out;
+            transition: .5s ease-in-out;
+            cursor: pointer;
+            }
             
-             <li className="option opacity-20">
-             <div className="line absolute w-[10%] top-2/4 border-b transform origin-left scale-x-0" />
-                <div >
-                  <a className="ml-10" href="#">            
-                    HOME
-                  </a>
-                </div>          
-              </li>
-             
-             <li className="option pt-10 opacity-20">
-             <div className="line absolute w-[10%] top-3/4 border-b transform origin-left scale-x-0" />
-              <div>
-                <a className="ml-10" href="#about">ABOUT</a>
-                </div>
-              </li>
-
-             <li className="option pt-10 opacity-20">
-             <div className="line absolute w-[10%] top-3/4 border-b transform origin-left scale-x-0" />
-                <div>
-                 <a className="ml-10" href="#1">PROJECTS</a>
-                </div>
-              </li>
-
-             <li className="option pt-10 opacity-20">
-             <div className="line absolute w-[10%] top-3/4 border-b transform origin-left scale-x-0" />
-                <div>
-                  <a className="ml-10" href="#guestbook">NFT GUESTBOOK</a>
-                </div>
-              </li>
-
-             <li className="option pt-10 opacity-20">
-             <div className="line absolute w-[10%] top-3/4 border-b transform origin-left scale-x-0" />
-                <div>
-                  <a className="ml-10" href="#contact">CONTACT</a>
-                </div>
-              </li>
-
-           </ul>
-          </div> 
-        </section>
-      </nav>
-    </div>
-
-    <div className="absolute h-screen w-full z-50">
-      <Canvas >
-        <ParticleSystem/>
-      </Canvas>
-    </div>
-    </>
+            #nav-icon3 span {
+            display: block;
+            position: absolute;
+            height: 4px;
+            width: 100%;
+            background: #EAF6FF;
+            opacity: 1;
+            left: 0;
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+            -webkit-transition: .25s ease-in-out;
+            -moz-transition: .25s ease-in-out;
+            -o-transition: .25s ease-in-out;
+            transition: .25s ease-in-out;
+            }
+            
+            #nav-icon3 span:nth-child(1) {
+            top: 0px;
+            }
+            
+            #nav-icon3 span:nth-child(2),#nav-icon3 span:nth-child(3) {
+            top: 12px;
+            }
+            
+            #nav-icon3 span:nth-child(4) {
+            top: 24px;
+            }
+            
+            #nav-icon3.open span:nth-child(1) {
+            top: 18px;
+            width: 0%;
+            left: 50%;
+            }
+            
+            #nav-icon3.open span:nth-child(2) {
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+            }
+            
+            #nav-icon3.open span:nth-child(3) {
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            }
+            
+            #nav-icon3.open span:nth-child(4) {
+            top: 18px;
+            width: 0%;
+            left: 50%;
+            }
+        `}
+        </style>
+        </nav>
     )
   }
   
   export default Menu
+  

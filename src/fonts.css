@@ -13,3 +13,29 @@
     font-weight: normal;
     font-style: normal;
   }
+
+  @font-face {
+    font-family: 'Digital'; /* Choose a name for your font */
+    src: url('/DigitalDisplayRegular-ODEO.ttf') format('truetype');
+    /* You might need to adjust the path based on your project structure */
+    font-weight: regular;
+    font-style: regular;
+  }
+
+  @font-face {
+    font-family: 'Predator'; /* Choose a name for your font */
+    src: url('/CodepredatorsRegular-L725.otf') format('opentype');
+    /* You might need to adjust the path based on your project structure */
+    font-weight: regular;
+    font-style: regular;
+  }
+
+  @font-face {
+    font-family: 'Charger'; /* Choose a name for your font */
+    src: url('/ChargerMonospaceCondensed.otf') format('opentype');
+    /* You might need to adjust the path based on your project structure */
+    font-weight: regular;
+    font-style: regular;
+  }
+
+  

@@ -9,7 +9,7 @@ function Footer() {
       <ContactFooter/>
     </div>
     
-    <div className="xl:col-start-7 xl:col-end-13 col-start-1 col-end-13 h-full">
+    <div className="xl:col-start-7 xl:col-end-13 xl:mt-0 mt-[50px] col-start-1 col-end-13 h-full">
       <ContactForm/>
     </div>
     </div>

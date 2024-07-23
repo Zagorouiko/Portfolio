@@ -9,9 +9,13 @@ module.exports = {
         kuano: ["Kuano", "sans-serif"],
         modenine: ["Modenine", "sans-serif"],
         windows: ["Segoe UI", "sans-serif"],
+        digital: ["Digital", "sans-serif"],
+        predator: ["Predator", "sans-serif"],
+        charger: ["Charger", "sans-serif"],
       },
       gridTemplateColumns: {
         // 24 column grid
+        '13': 'repeat(13, minmax(0, 1fr))',
         '24': 'repeat(24, minmax(0, 1fr))',
       },
       gridColumnStart: {

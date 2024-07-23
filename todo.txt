@@ -1,16 +1,44 @@
-Features
-1. Add custom model to gpt chat
-2. Add state animations (hamburger/close, project progress bar)
-3. Show loading screen when the assets are being loaded
-4. Add clouds to about page
-5. Update projects styling
+1. Fix Doom from closing when pressing Esc while full screened
 
-**Responsiveness
 
-Fixes
-1. Project 4 horizontal scroll space
-2. Add overflow to chatbox
-3. Optimize/fix vertical scroll for project images
-4. Fix scrollbar missing on nfts page
-5. Add text above parallax images and set both as absolute grids
-6. Fix shader scroll issue and update plane sizing
+Optional
+1. task icon - Add scale to bottom border on hover + shrink border by 15%
+2. Add spinner on terminal run
+3. Add animation to task right click menus
+_______________________________
+
+1. Compatibility pass:
+  Firefox
+  1. Fix contact form send button padding
+
+  Windows Brave
+  - Pass
+
+  Windows Chrome
+
+  Windows Edge
+
+  Mac Safari
+
+  Mac Chrome
+
+  Android Chrome
+
+  iOS Safari
+_________________________________
+
+2. SEO/Accessibility/Error pass:
+  1. Fix all browser errors
+
+3. Optimization Pass
+    Done
+
+4. Responsiveness Pass
+    Done
+
+5. Security Pass
+    Done
+___________________________________
+
+3. Hosting pass
+ 1. Update server api urls to zagorouiko.com

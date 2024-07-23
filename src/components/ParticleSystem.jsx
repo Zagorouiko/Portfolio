@@ -102,7 +102,7 @@ function ParticleSystem(texture) {
     
         // Glow image
         displacement.glowImage = new Image()
-        displacement.glowImage.src = '/glow.png'
+        displacement.glowImage.src = '/glow.webp'
     
         // Texture
         displacement.texture = new THREE.CanvasTexture(displacement.canvas)
@@ -148,7 +148,7 @@ function ParticleSystem(texture) {
             fragmentShader: particlesFragmentShader,
             blending: THREE.AdditiveBlending,
             uniforms: {
-                uResolution: { value: new THREE.Vector2(500, 500) },
+                uResolution: { value: new THREE.Vector2(300, 300) },
                 uPictureTexture: new THREE.Uniform(texture.texture),
                 uDisplacementTexture: new THREE.Uniform(displacement.texture)
             },

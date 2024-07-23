@@ -1,17 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import NFTpage from './routes/NFTpage.jsx'
-import Root from "./routes/Root.jsx";
+import Root from "./routes/Root.jsx"
 import './index.css'
 import {
   createBrowserRouter,
   RouterProvider,
-} from "react-router-dom";
-
+} from "react-router-dom"
 import { ApolloProvider, ApolloClient, InMemoryCache} from '@apollo/client'
 import { smartWallet, ThirdwebProvider, embeddedWallet, metamaskWallet } from "@thirdweb-dev/react"
 import { Sepolia } from "@thirdweb-dev/chains"
 import { TerminalContextProvider } from "react-terminal"
+import DOOMpage from './routes/DOOMpage.jsx'
+import NotFound from './routes/NotFound.jsx'
 
 const router = createBrowserRouter([
   {
@@ -21,12 +22,20 @@ const router = createBrowserRouter([
   {
     path: "/nfts",
     element: <NFTpage />,
+  },
+  {
+    path: "/doom",
+    element: <DOOMpage/>,
+  },
+  {
+    path: "*", 
+    element: <NotFound />,
   }
 ])
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  uri: "https://api.studio.thegraph.com/query/41467/degen/0.0.3"
+  uri: "https://api.studio.thegraph.com/query/41467/portfolio/0.0.3"
 })
 
 const smartWalletConfig = {
@@ -39,7 +48,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <ApolloProvider client={client}>
       <ThirdwebProvider 
       activeChain={Sepolia}
-      clientId={"51f81339614bc8e7a3cac807befb1c2a"}
+      clientId={import.meta.env.VITE_PUBLIC_THIRDWEB_CLIENTID}
       supportedWallets={[
         smartWallet(embeddedWallet(), smartWalletConfig),
         smartWallet(metamaskWallet(), smartWalletConfig)

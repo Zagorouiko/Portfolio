@@ -7,8 +7,9 @@
   html {
     font-family: "Rajdhani", sans-serif;
     cursor: crosshair;
+    /* cursor: none; */
     /* overflow: hidden; */
-    overflow: visible;
+    /* overflow: visible; */
   }
 
   body {
@@ -31,4 +32,74 @@
   .hide-loader {
     transform: translateY(-100%);
   }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #161616;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #2a2a2a;
+  }
+
+  /* .hover-this {
+    transition: all 0.3s ease;
+  }
+
+  .cursor {
+    pointer-events: none;
+    position: fixed;
+    background-color: #EAF6FF;
+    border-radius: 50%;
+    mix-blend-mode: difference;
+    transition: transform 0.3s ease;
+    z-index: 999;
+  }
+
+  .hover-this:hover ~ .cursor {
+    transform: translate(-50%, -50%) scale(8);
+  }
+
+  .cursor::after {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 10px solid black;
+    border-radius: 50%;
+    top: -5px;
+    left: -5px;
+    animation: cursorAnim2 1s infinite alternate;
+  }
+
+  .cursor.expand {
+    animation: cursorAnim3 0.25s infinite alternate;
+    border: 1px solid red;
+    opacity: 0.5;
+  }
+
+  @keyframes cursorAnim2 {
+    from {
+      transform: scale(.9);
+    }
+    to {
+      transform: scale(.1);
+    }
+  }
+
+  @keyframes cursorAnim3 {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.25);
+    }
+    100% {
+      transform: scale(1);
+    }
+  } */
+
 }
